@@ -1,6 +1,6 @@
 {
   "name": "spaassy-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Spaassy-Cli",
   "main": "/cli/bin/index.js",
   "bin": {
