@@ -2,8 +2,31 @@
 
 const spawn = require('cross-spawn');
 const chalk = require('chalk')
+const fs = require('fs')
 
 const gitUrl = 'https://github.com/spaassy/template.git'
+
+
+// 删除文件夹
+/**
+ * @param {string} path 删除文件的路劲
+ */
+function delDir(path) {
+    let files = [];
+    if (fs.existsSync(path)) {
+        files = fs.readdirSync(path);
+        files.forEach((file, index) => {
+            let curPath = path + "/" + file;
+            if (fs.statSync(curPath).isDirectory()) {
+                delDir(curPath); //递归删除文件夹
+            } else {
+                fs.unlinkSync(curPath); //删除文件
+            }
+        });
+        fs.rmdirSync(path);
+    }
+}
+
 const init = (projectName) => {
     console.log(chalk.green(`\n start clone template ......!`))
     const result = spawn.sync(
@@ -31,6 +54,16 @@ const init = (projectName) => {
 
     console.log(chalk.green('\n √ Generation completed!'))
     process.exit(result.status);
+
+    // 删除.git文件夹
+    delDir(`./${projectName}/.git`)
+    let installResult = spawn.sync(
+        `cd ${projectName} && npm install`, {
+            stdio: 'inherit',
+            shell: true
+        }
+    )
+    process.exit(installResult.status);
 }
 
 module.exports = init
