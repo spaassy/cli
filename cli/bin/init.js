@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const spawn = require('cross-spawn');
 const chalk = require('chalk')
 
