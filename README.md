@@ -16,7 +16,7 @@ npm i spaassy-cli -g
 spaassy init -p newProject
 ```
 
-init是初始化spaassy项目的命令，-p是这是项目名称的设置，newProject就是你项目的名称，你也可以直接执行：
+init是初始化spaassy项目的命令，-p是项目名称的设置，newProject就是你项目的名称，你也可以直接执行：
 
 ```node
 spaassy init
