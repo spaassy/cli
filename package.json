@@ -1,0 +1,27 @@
+{
+  "name": "spaassy-cli",
+  "version": "1.0.0",
+  "description": "Spaassy-Cli",
+  "main": "/cli/bin/index.js",
+  "bin": {
+    "spaassy": "/cli/bin/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spaassy/cli.git"
+  },
+  "author": "spaassy tem",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spaassy/cli/issues"
+  },
+  "homepage": "https://github.com/spaassy/cli#readme",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "commander": "^3.0.1",
+    "cross-spawn": "^7.0.0"
+  }
+}
