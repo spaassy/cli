@@ -7,7 +7,7 @@ const gitUrl = 'https://github.com/spaassy/template.git'
 const init = (projectName) => {
     console.log(chalk.green(`\n start clone template ......!`))
     const result = spawn.sync(
-        `git clone -b master ${gitUrl} ${projectName} && cd ${projectName}`, {
+        `git clone -b master ${gitUrl} ${projectName} && cd ${projectName} && rm -rf .git && npm install`, {
             stdio: 'inherit',
             shell: true
         }
