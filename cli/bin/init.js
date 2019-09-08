@@ -30,7 +30,7 @@ function delDir(path) {
 const init = (projectName) => {
     console.log(chalk.green(`\n start clone template ......!`))
     const result = spawn.sync(
-        `git clone -b master ${gitUrl} ${projectName} && cd ${projectName} && rm -rf .git && npm install`, {
+        `npm cache  clean -force && git clone -b master ${gitUrl} ${projectName} && cd ${projectName} && rm -rf .git && npm install`, {
             stdio: 'inherit',
             shell: true
         }
@@ -54,16 +54,6 @@ const init = (projectName) => {
 
     console.log(chalk.green('\n √ Generation completed!'))
     process.exit(result.status);
-
-    // 删除.git文件夹
-    delDir(`./${projectName}/.git`)
-    let installResult = spawn.sync(
-        `cd ${projectName} && npm install`, {
-            stdio: 'inherit',
-            shell: true
-        }
-    )
-    process.exit(installResult.status);
 }
 
 module.exports = init
