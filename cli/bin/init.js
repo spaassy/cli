@@ -4,6 +4,9 @@ const spawn = require('cross-spawn');
 const chalk = require('chalk')
 const fs = require('fs')
 
+const Spinner = require('cli-spinner').Spinner;
+
+
 const gitUrl = 'https://github.com/spaassy/template.git'
 
 
@@ -28,9 +31,9 @@ function delDir(path) {
 }
 
 const init = (projectName) => {
-    console.log(chalk.green(`\n start clone template ......!`))
+    console.log(chalk.green('\n init start!'))
     const result = spawn.sync(
-        `npm cache  clean -force && git clone -b master ${gitUrl} ${projectName} && cd ${projectName} && rm -rf .git && npm install`, {
+        `npm cache clean -force && git clone -b master ${gitUrl} ${projectName} && cd ${projectName} && rm -rf .git || rd /s/q .git`, {
             stdio: 'inherit',
             shell: true
         }
