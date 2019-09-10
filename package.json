@@ -1,6 +1,6 @@
 {
   "name": "spaassy-cli",
-  "version": "1.0.7-beta-1",
+  "version": "1.0.7-beta-2",
   "description": "Spaassy-Cli",
   "main": "./cli/bin/index.js",
   "bin": {
@@ -24,6 +24,8 @@
     "cli-spinner": "^0.2.10",
     "commander": "^3.0.1",
     "cross-spawn": "^7.0.0",
-    "inquirer": "^7.0.0"
+    "download-git-repo": "^2.0.0",
+    "inquirer": "^7.0.0",
+    "ora": "^3.4.0"
   }
 }
