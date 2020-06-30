@@ -21,6 +21,7 @@ const childProcess = require('child_process');
 const getGit = (gitManage) => {
 	return new Promise((resovle, reject) => {
 		childProcess.exec(gitManage, { encoding: 'utf-8' }, (stdout, error, status, output) => {
+			console.log(stdout, error, status, output)
 			error ? reject(error) : resovle(stdout);
 		});
 	});
