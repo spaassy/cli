@@ -25,7 +25,6 @@ const getGit = (gitManage) => {
 			encoding: 'utf-8'
 		}, (stdout, error, status, output) => {
 			console.log(stdout, error, status, output)
-			console.log(stdout, error, status, output)
 			error ? reject(error) : resovle(status);
 		});
 	});
@@ -77,7 +76,6 @@ program
 				const spinner = ora('正在初始化项目……\n').start();
 
 				if (fileIsExist(path.resolve(indexPath, `${projectName}`))) {
-					console.log('it is here?');
 					console.info(chalk.red(`\n${projectName} 文件夹已存在，请先删除！`));
 					spinner.stop();
 					return;
