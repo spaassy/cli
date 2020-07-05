@@ -14,15 +14,19 @@ const inquirer = require('inquirer');
 const fileIsExist = utils.fileIsExist;
 const readFileSync = utils.readFileSync;
 const writeFileSync = utils.writeFileSync;
+const delDir = utils.delDir;
 
 //异步子进程
 const childProcess = require('child_process');
 
 const getGit = (gitManage) => {
 	return new Promise((resovle, reject) => {
-		childProcess.exec(gitManage, { encoding: 'utf-8' }, (stdout, error, status, output) => {
+		childProcess.exec(gitManage, {
+			encoding: 'utf-8'
+		}, (stdout, error, status, output) => {
 			console.log(stdout, error, status, output)
-			error ? reject(error) : resovle(stdout);
+			console.log(stdout, error, status, output)
+			error ? reject(error) : resovle(status);
 		});
 	});
 };
@@ -32,14 +36,13 @@ program
 	.description('Generate a new project 123123')
 	.option('-p --project [projectName]', "set project name default 'spaassy'", 'spaassy')
 	.alias('i')
-	.action(function(cmd) {
+	.action(function (cmd) {
 		const projectName = cmd.project;
 		const indexPath = process.cwd();
 		console.log(chalk.blue('填写项目相关信息，你也可以直接使用默认值，然后在package.json文件中修改！'));
 
 		inquirer
-			.prompt([
-				{
+			.prompt([{
 					type: String,
 					name: 'name',
 					message: '项目名称:',
@@ -70,8 +73,8 @@ program
 					default: 'ISC'
 				}
 			])
-			.then(async (answers) => {
-				const spinner = ora('正在初始化项目……').start();
+			.then(answers => {
+				const spinner = ora('正在初始化项目……\n').start();
 
 				if (fileIsExist(path.resolve(indexPath, `${projectName}`))) {
 					console.log('it is here?');
@@ -83,6 +86,9 @@ program
 				getGit(`git clone https://github.com/spaassy/template.git ${projectName}`)
 					.then((res) => {
 						spinner.stop()
+						if (!res) {
+							console.info(chalk.blueBright('模板初始化失败！'));
+						}
 						let tempPackageData = null;
 						if (fileIsExist(path.resolve(indexPath, `${projectName}/package.json`))) {
 							let tempPackageJsonPath = path.resolve(indexPath, `${projectName}/package.json`);
@@ -96,6 +102,11 @@ program
 							let newTempPackageJson = JSON.stringify(tempPackageJson, null, '\t');
 							writeFileSync(tempPackageJsonPath, newTempPackageJson);
 						}
+
+						if (fileIsExist(path.resolve(indexPath, `${projectName}/.git`))) {
+							delDir(path.resolve(indexPath, `${projectName}/.git`))
+						}
+
 						// 可以输出一些项目成功的信息
 						console.info(chalk.blueBright('模板初始化成功！'));
 					})
