@@ -85,7 +85,7 @@ program
 					.then((res) => {
 						spinner.stop()
 						if (!res) {
-							console.info(chalk.blueBright('模板初始化失败！'));
+							console.info(chalk.red('模板初始化失败！'));
 						}
 						let tempPackageData = null;
 						if (fileIsExist(path.resolve(indexPath, `${projectName}/package.json`))) {
@@ -106,7 +106,7 @@ program
 						}
 
 						// 可以输出一些项目成功的信息
-						console.info(chalk.blueBright('模板初始化成功！'));
+						console.info(chalk.blue('模板初始化成功！'));
 					})
 					.catch((err) => {
 						spinner.stop()
