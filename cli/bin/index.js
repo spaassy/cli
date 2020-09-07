@@ -32,7 +32,7 @@ const getGit = (gitManage) => {
 
 program
 	.command('init')
-	.description('Generate a new project 123123')
+	.description('Generate a new project')
 	.option('-p --project [projectName]', "set project name default 'spaassy'", 'spaassy')
 	.alias('i')
 	.action(function (cmd) {
