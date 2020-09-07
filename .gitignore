@@ -60,5 +60,9 @@ typings/
 # next.js build output
 .next
 
+<<<<<<< HEAD
 
 .DS_Store
+=======
+.DS_Store
+>>>>>>> 3bf8cc0266d4179a5a7bf9417e3162bc7df57b52
